@@ -1,13 +1,13 @@
 #! /usr/local/bin/perl
 ##---------------------------------------------------------------------------##
 ##  File:
-##      dtdtree
+##      @(#)  dtdtree 1.2 96/10/06 @(#)
 ##  Author:
-##      Earl Hood       ehood@convex.com
+##      Earl Hood       ehood@medusa.acs.uci.edu
 ##  Description:
 ## 	Perl program to output content hierarchy trees of SGML elements.
 ##---------------------------------------------------------------------------##
-##  Copyright (C) 1994  Earl Hood, ehood@convex.com
+##  Copyright (C) 1994-1996  Earl Hood, ehood@medusa.acs.uci.edu
 ##
 ##  This program is free software; you can redistribute it and/or modify
 ##  it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ package main;
 ## Store name of program ##
 ($PROG = $0) =~ s/.*\///;
 
-$VERSION = "1.2.0";
+$VERSION = "1.3.1";
 
 unshift(@INC, 'lib');
 require "dtd.pl" || die "Unable to require dtd.pl\n";
@@ -41,7 +41,7 @@ require "newgetopt.pl" || die "Unable to require newgetopt.pl\n";
 ##-------------##
 &Usage() unless
     &NGetOpt(
-	"mapfile=s",
+	"catalog=s",
 	"dtd=s",
 	"treefile=s",
 	"level=i",
@@ -52,8 +52,8 @@ require "newgetopt.pl" || die "Unable to require newgetopt.pl\n";
 
 $DTDFILE  = ($opt_dtd ? $opt_dtd : "");
 $TREEFILE = ($opt_treefile ? $opt_treefile : "");
-$MAPFILE  = ($opt_mapfile ? $opt_mapfile : "map.txt");
-$LEVEL    = ($opt_level ? $opt_level : 15);
+$MAPFILE  = $opt_catalog || "catalog";
+$LEVEL    = $opt_level || 15;
 $VERBOSE  = (defined($opt_verbose) ? 1 : 0);
 
 if ($DTDFILE) {
@@ -75,7 +75,7 @@ if ($TREEFILE) {
 ## Read DTD ##
 ##----------##
     print STDERR "Reading $MAPFILE ...\n" if $VERBOSE;
-&DTDread_mapfile($MAPFILE);
+&DTDread_catalog_files($MAPFILE);
     print STDERR "Finished $MAPFILE ...\n" if $VERBOSE;
     print STDERR "Reading $DTDFILE ...\n" if $VERBOSE;
 &DTDread_dtd($DTD);
@@ -117,13 +117,13 @@ sub Usage {
     print STDOUT <<EndOfUsage;
 Usage: $PROG [options] <element> ...
 Options:
+  -catalog <filename>	: Use <filename> as entity map file.  Defaults to
+		          "catalog".
   -dtd <filename>	: Use <filename> as the SGML dtd to parse.  Otherwise
 		          read from STDIN.
   -help			: Print this usage message.
   -level <#>		: Only go down to tree level <#>.  Default tree level
 		          depth is 15.
-  -mapfile <filename>	: Use <filename> as entity map file.  Defaults to
-		          "map.txt".
   -treefile <filename>	: Output element content tree(s) to <filename>.
 		          Otherwise print to STDOUT.
   -verbose		: Print to STDERR what is going on.
@@ -137,7 +137,7 @@ Description
 Version: $VERSION
 dtd.pl Version: $dtd'VERSION
 
-  Copyright (C) 1994  Earl Hood, ehood\@convex.com
+  Copyright (C) 1994-1996  Earl Hood, ehood\@medusa.acs.uci.edu
   dtdtree comes with ABSOLUTELY NO WARRANTY and dtdtree may be copied only
   under the terms of the GNU General Public License (version 2, or later),
   which may be found in the distribution.

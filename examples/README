@@ -10,10 +10,10 @@ OpenBook.tree		Sample output from dtdtree on the OpenBook DTD.
 
 README			This file.
 
-html2.0/		Directory containing output from dtd2html on the
-			HTML 2.0 DTD.
+catalog			A sample catalog file.
 
-map.txt			A sample catalog entry file.
-
+html2.dsc		
+htmlent.dsc		dtd2html description files for the HTML 2.0 DTD.
 ---------------------------------------------------------------------------
-Earl Hood, ehood@convex.com
+97/09/16 15:16:02
+Earl Hood, ehood@medusa.acs.uci.edu

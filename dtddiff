@@ -1,14 +1,14 @@
 #! /usr/local/bin/perl
 ##---------------------------------------------------------------------------##
 ##  File:
-##      dtddiff
+##      @(#)  dtddiff 1.3 96/10/07 @(#)
 ##  Author:
-##      Earl Hood       ehood@convex.com
+##      Earl Hood       ehood@medusa.acs.uci.edu
 ##  Description:
 ##	dtddiff outputs the changes in a DTD with respect to new/old
 ##	elements and attributes.
 ##---------------------------------------------------------------------------##
-##  Copyright (C) 1994	Earl Hood, ehood@convex.com
+##  Copyright (C) 1994-1996	Earl Hood, ehood@medusa.acs.uci.edu
 ##
 ##  This program is free software; you can redistribute it and/or modify
 ##  it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ package main;
 ## Store name of program ##
 ($PROG = $0) =~ s/.*\///;
 
-$VERSION = "1.1.0";
+$VERSION = "1.2.1";
 
 ## Require libraries ##
 unshift(@INC, 'lib');
@@ -51,7 +51,7 @@ local($elem,$attr,%attribute,%OldElem,%NewElem);
 open(OLDDTD, $OLDDTD) || die "ERROR: Unable to open $OLDDTD\n";
 open(NEWDTD, $NEWDTD) || die "ERROR: Unable to open $NEWDTD\n";
 
-&DTDread_mapfile($MAPFILE);
+&DTDread_catalog_files($MAPFILE);
 
 ##--------------------
 ## Read old DTD
@@ -180,8 +180,9 @@ exit 0;
 sub get_cli_opts {
     &Usage() unless
     &NGetOpt(
-    "mapfile=s",	# External entity map file
-    "compact",	# Generate compact listing
+    "catalog=s",	# External entity catalog file
+    "compact",		# Generate compact listing
+    "nocompact",	# Generate long listing
     "help"		# Help message
     );
     &Usage() if defined($opt_help);
@@ -190,8 +191,9 @@ sub get_cli_opts {
     warn "ERROR: Invalid number of arguments\n";
     &Usage();
     }
-    $COMPACT = (defined($opt_compact) ? 1 : 0);
-    $MAPFILE = ($opt_mapfile ? $opt_mapfile : "map.txt");
+    $COMPACT = 1;
+    $COMPACT = 0  if defined($opt_nocompact);
+    $MAPFILE = $opt_catalog || "catalog";
     $OLDDTD = $ARGV[0];
     $NEWDTD = $ARGV[1];
 }
@@ -289,9 +291,10 @@ sub Usage {
     print STDOUT <<EndOfUsage;
 Usage:  $PROG [<options>] <olddtd> <newdtd>
 Options:
-  -compact		: Generate compact listing
+  -catalog <file>	: External entity catalog (def: "catalog")
+  -compact		: Generate compact listing (the default)
   -help			: This message
-  -mapfile <file>	: External entity map file
+  -nocompact		: Generate long listing
 
 Description:
   $PROG lists out the differences in what elements/attributes are
@@ -304,11 +307,10 @@ Description:
 Version: $VERSION
 dtd.pl Version: $dtd'VERSION
 
-  Copyright (C) 1994  Earl Hood, ehood\@convex.com
+  Copyright (C) 1994-1996  Earl Hood, ehood\@medusa.acs.uci.edu
   dtddiff comes with ABSOLUTELY NO WARRANTY and dtddiff may be copied only
   under the terms of the GNU General Public License (version 2, or later),
   which may be found in the distribution.
-
 EndOfUsage
 
     exit 0;

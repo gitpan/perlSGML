@@ -1,5 +1,31 @@
 Revision History for dtddiff
 -----------------------------
+	@(#) dtddiff.CHG @(#)
+==============================================================================
+1.2.1   (Oct 09, 1996)
+
+    Fixes:
+
+	o -compact is NOW the default.
+
+==============================================================================
+1.2.0	(Aug 21, 1996)
+
+    Changes:
+
+	o -compact is the default.  -nocompact has been added to
+	  provide a long listing.
+
+	o -catalog has replaced -mapfile.
+
+	o The only default catalog(s) file is "catalog" and no
+	  longer "map.txt".
+
+    Fixes:
+
+	o dtddiff will now properly recognize the SGML_CATALOG_FILES
+	  envariable.
+
 ==============================================================================
 1.1.0	(Dec 08, 1995)
 
@@ -37,6 +63,5 @@ Revision History for dtddiff
 
     First release.
 
-
 ==============================================================================
-Earl Hood, ehood@convex.com
+Earl Hood, ehood@medusa.acs.uci.edu
