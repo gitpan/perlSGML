@@ -1,0 +1,62 @@
+
+   
+     _________________________________________________________________
+   
+                                   STRIPSGML
+                                       
+                              REMOVE SGML MARKUP.
+   __________________________________________________________________________
+                                       
+Description
+
+                                       
+                                       
+  STRIPSGML REMOVES SGML MARKUP TAGS FROM A FILE. STRIPSGML ALSO ATTEMPTS TO
+           TRANSLATE STANDARD CHARACTER ENTITY REFERENCES TO ASCII.
+                                       
+     STRIPSGML IS NOT VERY SMART, AND IS INTENTED FOR SIMPLE SGML DOCUMENT
+                                  INSTANCES.
+   __________________________________________________________________________
+                                       
+Usage
+
+                                       
+                                       
+             STRIPSGML IS INVOKED FROM THE UNIX SHELL AS FOLLOWS:
+                                       
+                 % STRIPSGML [OPTIONS] < SGMLFILE > ASCIIFILE
+                                       
+               THE FOLLOWING ARE THE LIST OF OPTIONS AVAILABLE:
+                                       
+   -html
+          
+          
+          Cause URLs in anchor elements in an HTML document to be
+          preserved in the output.
+          
+                                       
+   __________________________________________________________________________
+                                       
+Availability
+
+                                       
+                                       
+              THIS PROGRAM IS PART OF THE PERLSGML PACKAGE; SEE
+           <URL:HTTP://WWW.OAC.UCI.EDU/INDIV/EHOOD/PERLSGML.HTML>
+   __________________________________________________________________________
+                                       
+Author
+
+    Earl Hood <ehood@convex.com>
+    CONVEX Computer Corporation
+    3000 Waterview Parkway
+    P.O. Box 833851
+    Richardson, TX 75083-3851
+    
+    Phone: (214) 497-4387
+    FAX: (214) 497-4500
+    
+                                       
+   __________________________________________________________________________
+                                       
+    stripsgml 0.1.1

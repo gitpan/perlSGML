@@ -1,0 +1,42 @@
+Revision History for dtddiff
+-----------------------------
+==============================================================================
+1.1.0	(Dec 08, 1995)
+
+    Enhancements:
+
+        o Entity map file syntax has changed to the SGML open catalog
+          format (see CHANGES.dtd.pl).
+
+        o Support for the envariable SGML_SEARCH_PATH (see
+          CHANGES.dtd.pl).
+
+        o Support for the envariable SGML_CATALOG_FILES (see
+          CHANGES.dtd.pl).
+
+==============================================================================
+1.0.2	(Dec 16, 1994)
+
+    Bug fixes:
+
+	o Infinite loop occured when the -compact option was *not*
+	  specified.  This has been been fix.
+
+
+==============================================================================
+1.0.1	(Dec 14, 1994)
+
+    New Functionality/Enhancements:
+
+	o Added -compact option which makes new/old elements/attributes
+	  listed in 2 columns.
+
+
+==============================================================================
+1.0.0	(Dec 12, 1994)
+
+    First release.
+
+
+==============================================================================
+Earl Hood, ehood@convex.com

@@ -1,0 +1,91 @@
+
+   
+     _________________________________________________________________
+   
+                                    SGML.PL
+                                       
+   
+   
+   sgml.pl is a Perl library that parses an SGML document instance.
+     _________________________________________________________________
+   
+Usage
+
+   
+   
+   If installed correctly, the following Perl statement can be used to
+   access the library routines:
+
+    require "sgml.pl";
+
+   
+   
+   Currently, sgml.pl is not very suffisticated. It cannot handle complex
+   SGML documents, is slow, and inefficient with memory usage. The
+   library is best used on small documents.
+     _________________________________________________________________
+   
+Routines
+
+  SGMLREAD_SGML
+  
+   
+   
+   &'SGMLread_sgml(FILEHANDLE, *array_r);
+   
+   SGMLread_sgml reads SGML markup. The *array_r is the returned array
+   that contains tags separated from text. I.e. SGMLread_sgml splits the
+   markup tags from text. Each array item is either a markup tag or a
+   text. The order of tag/text items are the order they appear in the
+   SGML document.
+   
+   After SGMLread_sgml is called, one only needs to `shift' thru the
+   items to read the SGML. If the item begins with a `<` it is a tag,
+   else it is text.
+   
+    Notes
+     *
+       
+       All comment declarations, `<!-- -->', are deleted.
+     *
+       
+       SGMLread_sgml is not intended to parse a DTD, or an SGML
+       delcaration statement, `<SGML ...>'. It is designed to parse SGML
+       instances.
+     *
+       
+       Marked sections are not recognized.
+     *
+       
+       Element with CDATA content can screw things up if they contain `<`
+       or `>' characters.
+     *
+       
+       Attributes with `<` or `>' characters will screw things up
+       
+   
+     _________________________________________________________________
+   
+Availability
+
+   
+   
+   This program is part of the perlSGML package; see
+   <URL:http://www.oac.uci.edu/indiv/ehood/perlSGML.html>
+     _________________________________________________________________
+   
+Author
+
+    Earl Hood <ehood@convex.com>
+    CONVEX Computer Corporation
+    3000 Waterview Parkway
+    P.O. Box 833851
+    Richardson, TX 75083-3851
+    
+    Phone: (214) 497-4387
+    FAX: (214) 497-4500
+    
+   
+     _________________________________________________________________
+   
+    sgml.pl 0.1.0
